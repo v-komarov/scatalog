@@ -1,0 +1,134 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Процессы согласования</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li><a href="/proc">Процессы</a>
+	    <li class="active"><a href="/scheme">Схемы</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+	<h4>Редактирование схемы</h4><a href="/schemeedit/?edit=ok"><i class="icon-arrow-right"></i>Сохранить</a>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <form action="" method="post" class="form-search">{% csrf_token %}
+	{{ form.name.label }} {{ form.name }}
+	<button type="submit" class="btn">Применить</button>
+    </form>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+	<th>Шаг номер</th>
+	<th>Название шага</th>
+	<th>Исполнитель</th>
+	<th>Действие</th>
+	<th>Да к шагу</th>
+	<th>Нет к шагу</th>
+	<th>Функция</th>
+	<th>Удалить</th>
+    </thead>
+    <tbody>
+    {% for item in steps %}
+	<tr>
+	    <td>{{ item.step_number }}</td>
+	    <td>{{ item.step_name }}</td>
+	    <td>{{ item.user_name }}</td>
+	    <td>{{ item.action_name }}</td>
+	    <td>{{ item.step_yes }}</td>
+	    <td>{{ item.step_no }}</td>
+	    <td>{{ item.function }}</td>
+	    <td><a style="color:red;" href="/schemeedit?delete_step={{ item.step_number }}"><i class="icon-trash"></i>&nbsp;X</a></td>
+	</tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <form action="" method="post" class="form-horizontal">{% csrf_token %}
+	<fieldset>
+	    <legend>Формирование схемы</legend>
+
+	<div class="row-fluid">
+	    <div class="control-group span5">
+	    <label class="control-label">{{ stepform.step_number.label }}</label>
+		<div class="controls">{{ stepform.step_number }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group span5">
+	    <label class="control-label">{{ stepform.step_name.label }}</label>
+		<div class="controls">{{ stepform.step_name }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+	<div class="row-fluid">
+	    <div class="control-group span5">
+	    <label class="control-label">{{ stepform.user.label }}</label>
+		<div class="controls">{{ stepform.user }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group span5">
+	    <label class="control-label">{{ stepform.action.label }}</label>
+		<div class="controls">{{ stepform.action }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+	<div class="row-fluid">
+	    <div class="control-group span5">
+	    <label class="control-label">{{ stepform.step_yes.label }}</label>
+		<div class="controls">{{ stepform.step_yes }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group span5">
+	    <label class="control-label">{{ stepform.step_no.label }}</label>
+		<div class="controls">{{ stepform.step_no }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+	<div class="row-fluid">
+	    <div class="control-group span5">
+	    <label class="control-label">{{ stepform.function.label }}</label>
+		<div class="controls">{{ stepform.function }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+	</fieldset>
+	    <div class="control-group">
+		<div class="controls"><button type="submit" class="btn">Добавить</button></div>
+	    </div><!-- control-group -->
+    </form>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+
+{% include "footer.html" %}
+

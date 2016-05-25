@@ -1,0 +1,40 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Движение ТМЦ</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Создание нового объекта учета</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
+	<fieldset>
+	    <legend>Создание</legend>
+	    <div class="control-group">
+	    <label class="control-label">{{ form.name.label }}</label>
+		<div class="controls">{{ form.name }}</div>
+	    </div><!-- control-group -->
+	</fieldset>
+	    <div class="control-group">
+		<div class="controls"><button type="submit" class="btn">Создать</button></div>
+	    </div><!-- control-group -->
+    </form>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+{% include "footer.html" %}
+

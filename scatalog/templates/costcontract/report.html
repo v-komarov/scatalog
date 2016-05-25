@@ -1,0 +1,76 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Затратные договоры</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li><a href="/costcontract">Список</a>
+	    <li class="active"><a href="/costcontractreport">Отчеты</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <form action="" method="post" class="form-horizontal">{% csrf_token %}
+	<fieldset>
+	    <legend>Выборка по теме, контрагенту (сумма по активным заказам)</legend>
+
+
+	<div class="row-fluid">
+	    <div class="control-group span6">
+	    <label class="control-label">{{ form1.tema.label }}</label>
+		<div class="controls">{{ form1.tema }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+	<div class="row-fluid">
+	    <div class="control-group span6">
+	    <label class="control-label">{{ form1.contragent.label }}</label>
+		<div class="controls">{{ form1.contragent }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+	</fieldset>
+
+	<div class="row-fluid">
+	    <div class="control-group span6">
+		<div class="controls"><button type="submit" class="btn">Создать</button></div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+    </form>
+
+<div class="row-fluid">
+	<b>Тема :</b> {{ tema }}<br>
+	<b>Контрагент :</b> {{ contragent }}<br>
+	<b>Результат : </b> {{ result1 }}
+</div><!-- row-fluid -->
+<br>
+
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <a href="/costcontractreport/?excel=excel">Выгрузить базу в Excel</a>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+{% include "footer.html" %}
+

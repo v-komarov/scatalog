@@ -1,0 +1,45 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Процессы согласования</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li><a href="/proc">Процессы</a>
+	    <li class="active"><a href="/scheme">Схемы</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+	<h4>Создание новой схемы</h4>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <form action="" method="post" class="form-search">{% csrf_token %}
+	{{ form.name.label }} {{ form.name }}
+	<button type="submit" class="btn">Создать</button>
+    </form>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+{% include "footer.html" %}
+

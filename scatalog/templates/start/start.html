@@ -1,0 +1,59 @@
+{% include "header.html" %}
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+	<div class="container">
+	    <a class="brand" href="#">SCatalog</a>
+	</div><!-- container -->
+    </div><!-- navbar-inner -->
+</div><!-- navbar navbar-inverse navbar-fixed-top -->
+
+
+
+
+<div class="row-fluid">
+<div class="span6 offset3">
+    <form action="" method="post" class="form-horizontal">{% csrf_token %}
+	<fieldset>
+	    <legend>Регистрация</legend>
+	    <div class="control-group">
+	    <label class="control-label" for="login">Логин</label>
+		<div class="controls"><input type="text" name="login" placeholder="login"></div>
+	    </div><!-- control-group -->
+	    <div class="control-group">
+	    <label class="control-label" for="password">Пароль</label>
+		<div class="controls"><input type="password" name="password" /></div>
+	    </div><!-- control-group -->
+	</fieldset>
+	    <div class="control-group">
+		<div class="controls"><button type="submit" class="btn">OK</button></div>
+	    </div><!-- control-group -->
+    </form>
+
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+
+
+<div class="row-fluid">
+<div class="span6 offset3">
+    Если забыт логин и пароль, вам <a href="http://10.6.0.223:20000/pwmail">сюда!</a>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+
+{% if error != 'OK' %}
+<div class="row-fluid">
+<div class="span4 offset4">
+	    <center>
+	    <div class="alert alert-error">{{ error }}</div>
+	    </center>
+</div><!-- span4 offset4 -->
+</div><!-- row-fluid -->
+{% endif %}
+
+
+{% include "footer.html" %}

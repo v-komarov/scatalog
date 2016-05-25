@@ -1,0 +1,128 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Подключение клиентов</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li class="active"><a href="/clientlist">Список</a>
+	    <li><a href="/clientrep">Отчеты</a>
+	    <li><a href="/clientopt">Настройки</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+<div class="row-fluid">
+<div class="span2 offset1">
+    <a href="/clientnew"><i class="icon-file"></i>Создать</a>
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <form action="" method="post" class="form-search">{% csrf_token %}
+	{{ form.search }}
+	<button type="submit" class="btn">Искать</button>
+    </form>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+{# Вывод страниц #}
+<div class="row-fluid">
+<div class="span2 offset1">
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+	<th>Приоритет</th>
+	<th>Название</th>
+	<th>Адрес</th>
+	<th>Статус</th>
+	<th>Инициатор (тел.)</th>
+	<th>Исполнитель (тел.)</th>
+	<th>Создан</th>
+    </thead>
+    <tbody>
+	{% for row in data %}
+	<tr>{% if row.9 == 'Срочно' %}
+	    <td style="color: red;">
+	    {% else %}
+	    <td>
+	    {% endif %}
+		{{ row.9 }}
+	    </td>
+	    <td><a href="/client/?client_id={{ row.0 }}">{{ row.1 }}</a></td>
+	    <td style="color: brown;">{{ row.2 }}</td>
+	    <td style="color: green;">{{ row.3 }}</td>
+	    <td>{{ row.4 }} ({{ row.5 }})</td>
+	    <td>{{ row.7 }} ({{ row.8 }})</td>
+	    <td>{{ row.6|date:"d.m.Y" }}</td>
+	</tr>
+	{% endfor %}
+    </tbody>
+</table>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+{# Вывод страниц #}
+<div class="row-fluid">
+<div class="span2 offset1">
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+{% include "footer.html" %}
+

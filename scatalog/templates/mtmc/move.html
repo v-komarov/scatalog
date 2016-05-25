@@ -1,0 +1,76 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Движение ТМЦ</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+{% include "mtmc/head.html" %}
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li><a href="/mtmcedit">Наименование</a>
+	    <li><a href="/mtmcattrs">Атрибуты</a>
+	    <li><a href="/mtmcdata">Компоненты</a>
+	    <li><a href="/mtmcstatus">Статус</a>
+	    <li class="active"><a href="/mtmcmove">Перемещения</a>
+	    <li><a href="/mtmcfiles">Приложения</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h4>Переместить:</h4>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <form action="" method="post" class="form-search">{% csrf_token %}
+	{{ form.user.label }} {{ form.user }} {{ form.place.label }} {{ form.place }}
+	<button type="submit" class="btn">Переместить</button>
+    </form>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+	<th>МОЛ</th>
+	<th>Место</th>
+	<th>Переместил</th>
+	<th>Дата</th>
+	<th>Время</th>
+    </thead>
+    <tbody>
+	{% for row in data %}
+	<tr>
+	    <td>{{ row.user_name }}</td>
+	    <td>{{ row.area }}</td>
+	    <td>{{ row.author_name }}</td>
+	    <td>{{ row.create|date:"d.m.Y" }}</td>
+	    <td>{{ row.create|date:"H:i" }}</td>
+	</tr>
+	{% endfor %}
+    </tbody>
+</table>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+{% include "footer.html" %}
+

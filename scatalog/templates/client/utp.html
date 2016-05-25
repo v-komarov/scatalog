@@ -1,0 +1,123 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+
+{% include "client/head.html" %}
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li><a href="/client">Запрос</a>
+	    <li><a href="/technical">Тех. решение</a>
+	    <li><a href="/commercial">Ком. часть</a>
+	    <li class="active"><a href="/realization">Реализация</a>
+	    <li><a href="/clientstatus">История статусов</a>
+	    <li><a href="/clientemail">История уведомлений</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    {% if client.in_real != "" %}
+	<b>Принял в реализацию:</b> {{ client.in_real }}
+    {% else %}
+	<a href="/realutp/?in_real=ok">Принимаю в реализацию</a>
+    {% endif %}
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <form action="" method="post" class="form-horizontal">{% csrf_token %}
+	<fieldset>
+	    <legend>Реализация</legend>
+
+
+	<div class="row-fluid">
+	    <div class="control-group span6">
+	    <label class="control-label">{{ form.smartasr_order.label }}</label>
+		<div class="controls">{{ form.smartasr_order }}</div>
+	    </div><!-- control-group -->
+
+	    <div class="control-group span6">
+	    <label class="control-label">{{ form.date_order.label }}</label>
+		<div class="controls">{{ form.date_order }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+
+	<div class="row-fluid">
+	    <div class="control-group span6">
+	    <label class="control-label">{{ form.iss.label }}</label>
+		<div class="controls">{{ form.iss }}</div>
+	    </div><!-- control-group -->
+
+	    <div class="control-group span6">
+	    <label class="control-label">{{ form.date_real.label }}</label>
+		<div class="controls">{{ form.date_real }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+	<div class="row-fluid">
+	    <div class="control-group span6">
+	    <label class="control-label">{{ form.date_realend.label }}</label>
+		<div class="controls">{{ form.date_realend }}</div>
+	    </div><!-- control-group -->
+
+	</div><!-- row-fluid -->
+
+
+	<div class="row-fluid">
+	    <div class="control-group span8">
+	    <label class="control-label">{{ form.comment.label }}</label>
+		<div class="controls">{{ form.comment }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+	</fieldset>
+
+	    <div class="control-group span5">
+		<div class="controls"><button type="submit" class="btn">Применить</button></div>
+	    </div><!-- control-group -->
+
+    </form>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <form action="" method="post" class="form-search">{% csrf_token %}
+    <legend>Файлы</legend>
+	{{ fform.file_link }}
+	<button type="submit" class="btn">Добавить</button>
+    </form>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <ul class="inline">
+	{% for item in realfiles %}
+	    <li><a href="/getfile?file_id={{ item.2 }}">{{ item.1 }}</a><a style="color:red;" href="/realutp?delete_file={{ item.0 }}"><i class="icon-trash"></i>&nbsp;X</a></li>
+	{% endfor %}
+    </ul>
+</div><!-- span10 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+{% include "footer.html" %}
+

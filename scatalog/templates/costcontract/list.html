@@ -1,0 +1,120 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Затратные договоры</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li class="active"><a href="/costcontract">Список</a>
+	    <li><a href="/costcontractreport">Отчеты</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span2 offset1">
+    <a href="/costcontractnew"><i class="icon-file"></i>Создать</a>
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <form action="" method="post" class="form-search">{% csrf_token %}
+	{{ form.search }}
+	<button type="submit" class="btn">Искать</button>
+    </form>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+{# Вывод страниц #}
+<div class="row-fluid">
+<div class="span2 offset1">
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+	<th>Контрагент</th>
+	<th>Номер</th>
+	<th>Тема</th>
+	<th>Сумма</th>
+	<th>Исполнитель (тел.)</th>
+	<th>Принадлежность</th>
+	<th>Создан</th>
+    </thead>
+    <tbody>
+	{% for row in data %}
+	    <td style="color: brown;">{{ row.contragent }}</td>
+	    <td><a href="/costcontractedit/?contract_id={{ row.rec_id }}">{{ row.contract }}</a></td>
+	    <td style="color: brown;">{{ row.tema }}</td>
+	    <td style="color: green;">{{ row.sum }}</td>
+	    <td>{{ row.author }} ({{ row.phone }})</td>
+	    <td>{{ row.block }}</td>
+	    <td>{{ row.added|date:"d.m.Y" }}</td>
+	</tr>
+	{% endfor %}
+    </tbody>
+</table>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+{# Вывод страниц #}
+<div class="row-fluid">
+<div class="span2 offset1">
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+{% include "footer.html" %}
+

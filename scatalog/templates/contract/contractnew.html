@@ -1,0 +1,39 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Договоры</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span6 offset3">
+    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
+	<fieldset>
+	    <legend>Добавить файл договора (до 100Мб)</legend>
+	    <div class="control-group">
+	    <label class="control-label">{{ form.contragent.label }}</label>
+		<div class="controls">{{ form.contragent }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group">
+	    <label class="control-label">{{ form.comment.label }}</label>
+		<div class="controls">{{ form.comment }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group">
+	    <label class="control-label">{{ form.file_load.label }}</label>
+		<div class="controls">{{ form.file_load }}</div>
+	    </div><!-- control-group -->
+	</fieldset>
+	    <div class="control-group">
+		<div class="controls"><button type="submit" class="btn">Добавить</button></div>
+	    </div><!-- control-group -->
+    </form>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+{% include "footer.html" %}

@@ -1,0 +1,129 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Процессы согласования</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li class="active"><a href="/proc">Процессы</a>
+	    <li><a href="/scheme">Схемы</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h4>Процессы</h4>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+<div class="row-fluid">
+<div class="span2 offset1">
+    <a href="/procdata/?proc_id=new"><i class="icon-file"></i>Создать</a>
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+{# Вывод страниц #}
+<div class="row-fluid">
+<div class="span2 offset1">
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+	<th>Номер</th>
+	<th>Процесс</th>
+	<th>Статус</th>
+	<th>Создан</th>
+	<th>Схема</th>
+	<th>Шаг</th>
+	<th>Согласующий</th>
+	<th>Инициатор</th>
+    </thead>
+    <tbody>
+	{% for row in data %}
+	<tr>
+	    <td>{{ row.0 }}</td>
+	    <td><a href="/procdata/?proc_id={{ row.1 }}">{{ row.2 }}</a></td>
+	    {% if row.3 == 'Выполняется' %}
+	    <td class="text-warning">
+	    {% elif row.3 == 'Остановлен' %}
+	    <td class="text-error">
+	    {% elif row.3 == 'Завершен' %}
+	    <td class="text-success">
+	    {% else %}
+	    <td>
+	    {% endif %}
+	    {{ row.3 }}</td>
+	    <td>{{ row.4|date:"d.m.Y" }}</td>
+	    <td><div style="color: brown;">{{ row.5 }}</div></td>
+	    <td>{{ row.6 }}</td>
+	    <td>{{ row.7 }}</td>
+	    <td>{{ row.8 }}</td>
+	</tr>
+	{% endfor %}
+    </tbody>
+</table>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+{# Вывод страниц #}
+<div class="row-fluid">
+<div class="span2 offset1">
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+{% include "footer.html" %}
+

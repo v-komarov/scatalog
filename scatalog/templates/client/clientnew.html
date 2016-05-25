@@ -1,0 +1,125 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Подключение клиентов</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <form action="" method="post" class="form-horizontal">{% csrf_token %}
+	<fieldset>
+	    <legend>Запрос на обработку</legend>
+
+
+	<div class="row-fluid">
+	    <div class="control-group">
+	    <label class="control-label">{{ form.priority.label }}</label>
+		<div class="controls">{{ form.priority }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group">
+	    <label class="control-label">{{ form.name.label }}</label>
+		<div class="controls">{{ form.name }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group">
+	    <label class="control-label">{{ form.address.label }}</label>
+		<div class="controls">{{ form.address }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+
+	<div class="row-fluid">
+	    <div class="control-group span5">
+	    <label class="control-label">{{ form.inn.label }}</label>
+		<div class="controls">{{ form.inn }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group span5">
+	    <label class="control-label">{{ form.product.label }}</label>
+		<div class="controls">{{ form.product }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+	<div class="row-fluid">
+	    <div class="control-group span5">
+	    <label class="control-label">{{ form.point.label }}</label>
+		<div class="controls">{{ form.point }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group span5">
+	    <label class="control-label">{{ form.manager.label }}</label>
+		<div class="controls">{{ form.manager }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+    <legend>Технические требования</legend>
+	<div class="row-fluid">
+	    <div class="control-group span5">
+	    <label class="control-label">{{ form.service.label }}</label>
+		<div class="controls">{{ form.service }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group span5">
+	    <label class="control-label">{{ form.speed.label }}</label>
+		<div class="controls">{{ form.speed }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+	<div class="row-fluid">
+	    <div class="control-group span5">
+	    <label class="control-label">{{ form.interface.label }}</label>
+		<div class="controls">{{ form.interface }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+	<div class="row-fluid">
+	    <div class="control-group span8">
+	    <label class="control-label">{{ form.option.label }}</label>
+		<div class="controls">{{ form.option }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+    <legend>Контактная информация</legend>
+
+
+	<div class="row-fluid">
+	    <div class="control-group span5">
+	    <label class="control-label">{{ form.client.label }}</label>
+		<div class="controls">{{ form.client }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group span5">
+	    <label class="control-label">{{ form.email.label }}</label>
+		<div class="controls">{{ form.email }}</div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+
+	<div class="row-fluid">
+	    <div class="control-group span5">
+	    <label class="control-label">{{ form.phone.label }}</label>
+		<div class="controls">{{ form.phone }}</div>
+	    </div><!-- control-group -->
+		
+	    <div class="control-group span5">
+		<div class="controls"><button type="submit" class="btn">Применить</button></div>
+	    </div><!-- control-group -->
+	</div><!-- row-fluid -->
+
+	</fieldset>
+
+    </form>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+
+{% include "footer.html" %}
+

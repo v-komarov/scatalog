@@ -1,0 +1,106 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Движение ТМЦ</h3>
+</div><!-- span6 offset1 -->
+<div class="span1 offset9">
+    {% if print_ok %}
+	<a href="/mtmc/?print=ok"><i class="icon-print"></i> Печать</a>
+    {% endif %}
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <form action="" method="post" class="form-search">{% csrf_token %}
+	{{ formsearch.search.label }} {{ formsearch.search }}
+	<button type="submit" class="btn">Искать</button>
+    </form>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <form action="" method="post" class="form-search">{% csrf_token %}
+	{{ formuser.user.label }} {{ formuser.user }}
+	<button type="submit" class="btn">Применить</button>
+    </form>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+<div class="row-fluid">
+<div class="span2 offset1">
+    <a href="/mtmcnew/"><i class="icon-file"></i>Создать</a>
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+	{#<th></th>#}
+	<th>Наименование</th>
+	<th>Статус</th>
+	<th>Место</th>
+	<th>Пользователь</th>
+    </thead>
+    <tbody>
+	{% for row in data %}
+	<tr>
+	    {#<td><input type="checkbox" name={{ row.0 }}></td>#}
+	    <td><a href="/mtmcedit/?eq_id={{ row.0 }}">{{ row.1 }}</a></td>
+	    <td>{{ row.2 }}</td>
+	    <td>{{ row.3 }}</td>
+	    <td>{{ row.4 }}</td>
+	</tr>
+	{% endfor %}
+    </tbody>
+</table>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+{% comment %}
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
+	<fieldset>
+	    <legend>Перемещение</legend>
+	    <div class="control-group">
+	    <label class="control-label">{{ formmove.user2.label }}</label>
+		<div class="controls">{{ formmove.user2 }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group">
+	    <label class="control-label">{{ formmove.place.label }}</label>
+		<div class="controls">{{ formmove.place }}</div>
+	    </div><!-- control-group -->
+	</fieldset>
+	    <div class="control-group">
+		<div class="controls"><button type="submit" class="btn">Переместить</button></div>
+	    </div><!-- control-group -->
+    </form>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+{% endcomment %}
+
+
+
+{% include "footer.html" %}
+

@@ -1,0 +1,75 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Затратные договоры</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+{% include "costcontract/contract.html" %}
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li><a href="/costcontractedit">Договор</a>
+	    <li class="active"><a href="/costcontractorder">Заказы</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span2 offset1">
+    <a href="/costcontractordernew"><i class="icon-file"></i>Создать</a>
+</div><!-- span2 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+	<th>Номер<br>заказа</th>
+	<th>Документ</th>
+	<th>Еж.платежи</th>
+	<th>Начало<br>реализации</th>
+	<th>Окончание<br>реализации</th>
+	<th>Клиентский<br>заказ</th>
+	<th>Статус</th>
+	<th>Создал (Дата)</th>
+	<th>Удалить</th>
+    </thead>
+    <tbody>
+	{% for row in data %}
+	{% if row.status == 'Активный' %}
+	    <tr style="color: green;">
+	{% else %}
+	    <tr style="color: red;">
+	{% endif %}
+	    <td><a href="/costcontractorderedit/?order_id={{ row.order_id }}">{{ row.order }}</td>
+	    <td><a href="/costcontractorder/?order_id={{ row.order_id }}">{{ row.file_name }}</a></td>
+	    <td>{{ row.cost }}</td>
+	    <td>{{ row.start_date|date:"d.m.Y" }}</td>
+	    <td>{{ row.end_date|date:"d.m.Y" }}</td>
+	    <td>{{ row.clientorder }}</td>
+	    <td>{{ row.status }}</td>
+	    <td>{{ row.author }}<br>({{ row.create|date:"d.m.Y" }})</td>
+	    <td><a href="/costcontractorder/?delete_id={{ row.order_id }}" style="color: red;"><i class="icon-trash"></i>&nbsp;X</a></td>
+	</tr>
+	{% endfor %}
+    </tbody>
+</table>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+{% include "footer.html" %}

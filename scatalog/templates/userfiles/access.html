@@ -1,0 +1,81 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Мои файлы</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h4>Доступ к файлу</h4>
+    <h4>{{ fname }}</h4>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <form action="" method="post" class="form-horizontal">{% csrf_token %}
+	<legend>Установка вида доступа</legend>
+	<fieldset>
+	    <div class="control-group">
+	    <label class="control-label">{{ form.access.label }}</label>
+		<div class="controls">{{ form.access }}</div>
+	    </div><!-- control-group -->
+	</fieldset>
+	    <div class="control-group">
+		<div class="controls"><button type="submit" class="btn">Установить</button></div>
+	    </div><!-- control-group -->
+    </form>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+{% if access == 'user' %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+<h4>Список пользователей с доступом к этому файлу</h4>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+{% for item in accessuser %}
+    {{ item.2 }} {{ item.1 }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="/userfileaccess/?deluser_id={{ item.0 }}"><i class="icon-trash"></i></a><br>
+{% endfor %}
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <form action="" method="post" class="form-horizontal">{% csrf_token %}
+	<legend>Добавить доступ для...</legend>
+	<fieldset>
+	    <div class="control-group">
+	    <label class="control-label">{{ form2.user.label }}</label>
+		<div class="controls">{{ form2.user }}</div>
+	    </div><!-- control-group -->
+	</fieldset>
+	    <div class="control-group">
+		<div class="controls"><button type="submit" class="btn">Добавить</button></div>
+	    </div><!-- control-group -->
+    </form>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+{% endif %}
+
+
+
+{% include "footer.html" %}

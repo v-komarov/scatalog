@@ -1,0 +1,19 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+
+<div class="row-fluid">
+<div class="span4 offset4">
+<div class="alert alert-success">
+	<center>
+	<h4>Вы зарегистрированы как:</h4><br>
+	{{ fio }}<br>
+	Телефон {{ phone }}<br>
+	Email {{ email }}
+	</center>
+</div><!-- alert alert-success -->
+</div><!-- span4 offset4 -->
+</div><!-- row-fluid -->
+
+{% include "footer.html" %}

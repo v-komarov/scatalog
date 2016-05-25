@@ -1,0 +1,69 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Движение ТМЦ</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+{% include "mtmc/head.html" %}
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li class="active"><a href="/mtmcedit">Наименование</a>
+	    <li><a href="/mtmcattrs">Атрибуты</a>
+	    <li><a href="/mtmcdata">Компоненты</a>
+	    <li><a href="/mtmcstatus">Статус</a>
+	    <li><a href="/mtmcmove">Перемещения</a>
+	    <li><a href="/mtmcfiles">Приложения</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">{% csrf_token %}
+	<fieldset>
+	    <legend>Наименование</legend>
+	    <div class="control-group">
+	    <label class="control-label">{{ form.name.label }}</label>
+		<div class="controls">{{ form.name }}</div>
+	    </div><!-- control-group -->
+	</fieldset>
+	    <div class="control-group">
+		<div class="controls"><button type="submit" class="btn">Сохранить</button></div>
+	    </div><!-- control-group -->
+    </form>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+
+<table class="table-striped">
+    <tbody>
+	<tr>
+	<td><b>Дата создания</b><td>
+	<td>{{ create|date:"d.m.Y" }}</td>
+	</tr>
+	<tr>
+	<td><b>Создал</b><td>
+	<td>{{ author }} ({{ eq.author_phone }})</td>
+	</tr>
+    </tbody>
+</table>
+
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+{% include "footer.html" %}
+

@@ -1,0 +1,50 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+
+{% include "client/head.html" %}
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li><a href="/client">Запрос</a>
+	    <li><a href="/technical">Тех. решение</a>
+	    <li><a href="/commercial">Ком. часть</a>
+	    <li><a href="/realization">Реализация</a>
+	    <li class="active"><a href="/clientstatus">История статусов</a>
+	    <li><a href="/clientemail">История уведомлений</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+	<th>Дата</th>
+	<th>Статус</th>
+	<th>Установил</th>
+	<th>Телефон</th>
+    </thead>
+    <tbody>
+	{% for row in data %}
+	<tr>
+	    <td>{{ row.date|date:"d.m.Y" }}</td>
+	    <td>{{ row.status }}</td>
+	    <td>{{ row.author }}</td>
+	    <td>{{ row.phone }}</td>
+	</tr>
+	{% endfor %}
+    </tbody>
+</table>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+{% include "footer.html" %}
+

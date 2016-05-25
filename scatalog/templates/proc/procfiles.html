@@ -1,0 +1,48 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Процесс согласования</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+{% include "proc/procinfo.html" %}
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li><a href="/procdata/?proc_id={{ proc }}">Процесс</a>
+	    <li><a href="/procstep/?proc_id={{ proc }}">Решения</a>
+	    <li><a href="/proccomment/?proc_id={{ proc }}">Комментарии / Приложения</a>
+	    <li><a href="/procemail/?proc_id={{ proc }}">История уведомлений</a>
+	    <li class="active"><a href="/procfiles/?proc_id={{ proc }}">Все файлы</a>
+	    <li><a href="/procattrs/?proc_id={{ proc }}">Атрибуты</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+    <ol>
+	{% for row in data %}
+	    {% if row.file_name %}
+		<li>
+		    <a href="/getfile?file_id={{ row.file_id }}">{{ row.file_name }}</a>
+		    {{ row.author_name }}
+		</li>
+	    {% endif %}
+	{% endfor %}
+    </ol>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+{% include "footer.html" %}
+

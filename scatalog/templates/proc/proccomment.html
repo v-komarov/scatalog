@@ -1,0 +1,85 @@
+{% include "header.html" %}
+
+{% include "menu.html" %}
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Процесс согласования</h3>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+{% include "proc/procinfo.html" %}
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+	<ul class="nav nav-tabs">
+	    <li><a href="/procdata/?proc_id={{ proc }}">Процесс</a>
+	    <li><a href="/procstep/?proc_id={{ proc }}">Решения</a>
+	    <li class="active"><a href="/proccomment/?proc_id={{ proc }}">Комментарии / Приложения</a>
+	    <li><a href="/procemail/?proc_id={{ proc }}">История уведомлений</a>
+	    <li><a href="/procfiles/?proc_id={{ proc }}">Все файлы</a>
+	    <li><a href="/procattrs/?proc_id={{ proc }}">Атрибуты</a>
+	</ul><!-- nav -->
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+<div class="row-fluid">
+<div class="span10 offset1">
+<table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+	<th>Дата</th>
+	<th>Время</th>
+	<th>Комментарий</th>
+	<th>Файл</th>
+	<th>Добавил</th>
+	<th>Удалить</th>
+    </thead>
+    <tbody>
+	{% for row in data %}
+	<tr>
+	    <td>{{ row.create|date:"d.m.Y" }}</td>
+	    <td>{{ row.create|date:"H:i" }}</td>
+	    <td>{{ row.comment }}</td>
+	    <td><a href="/getfile?file_id={{ row.file_id }}">{{ row.file_name }}</a></td>
+	    <td>{{ row.author_name }}</td>
+	    <td><a href="/proccomment/?comment_delete={{ row.id }}"><i class="icon-trash"></i>&nbsp;X</a></td>
+	</tr>
+	{% endfor %}
+    </tbody>
+</table>
+</div><!-- span6 offset1 -->
+</div><!-- row-fluid -->
+
+
+
+<div class="row-fluid">
+<div class="span6 offset1">
+    <form action="" method="post" class="form-horizontal">{% csrf_token %}
+	<legend>Добавить комментарий / файл</legend>
+	<fieldset>
+	    <div class="control-group">
+	    <label class="control-label">{{ form.comment.label }}</label>
+		<div class="controls">{{ form.comment }}</div>
+	    </div><!-- control-group -->
+	    <div class="control-group">
+	    <label class="control-label">{{ form.file_link.label }}</label>
+		<div class="controls">{{ form.file_link }}</div>
+	    </div><!-- control-group -->
+	</fieldset>
+	    <div class="control-group">
+		<div class="controls"><button type="submit" class="btn">Добавить</button></div>
+	    </div><!-- control-group -->
+    </form>
+</div><!-- span6 offset3 -->
+</div><!-- row-fluid -->
+
+
+
+
+
+{% include "footer.html" %}
+

@@ -1,0 +1,17 @@
+<div class="row-fluid">
+<div class="span6 offset1">
+    <h3>Объект учета</h3>
+    
+    <b>Наименование: </b>{{ eq.name }}<br>
+    <b>Пользователь (тел.): </b>{{ eq.user_name }} ({{ eq.user_phone }})<br>
+    <b>Статус: </b>{{ eq.status }}<br>
+    <b>Место: </b>{{ eq.area }}<br>
+    {% if tmc %}
+    <a style="color: green;" href="http://10.6.0.80:8000/tmcdata/?tmc_id={{ tmc }}">Заявка ТМЦ {{ tmc }}</a><br>
+    {% endif %}
+</div><!-- span6 offset1 -->
+<div class="span4 offset1">
+    <img src="img/qrcode/{{ eq.id }}.png" width=150>
+</div><!-- span4 offset1 -->
+
+</div><!-- row-fluid -->
